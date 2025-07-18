@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import AuthContext from '../components/context/AuthContext';
+import AuthContext from '../../components/context/AuthContext';
 import { FaUserCircle, FaEnvelope, FaIdBadge, FaCopy, FaCheck, FaUser } from 'react-icons/fa';
 
 const ProfilePage = () => {

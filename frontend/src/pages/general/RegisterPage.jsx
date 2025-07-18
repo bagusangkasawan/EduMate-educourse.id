@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const RegisterPage = () => {

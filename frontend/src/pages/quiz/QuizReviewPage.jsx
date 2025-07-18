@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner.jsx';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
 import { FaArrowLeft, FaCheckCircle } from 'react-icons/fa';
 
 const QuizReviewPage = () => {

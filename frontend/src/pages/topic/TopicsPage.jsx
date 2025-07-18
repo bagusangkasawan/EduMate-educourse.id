@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
-import AuthContext from '../components/context/AuthContext';
-import ConfirmationModal from '../components/ui/ConfirmationModal';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
+import AuthContext from '../../components/context/AuthContext.jsx';
+import ConfirmationModal from '../../components/ui/ConfirmationModal.jsx';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const TopicCard = ({ topic, isTeacher, isAdmin, onDelete }) => {

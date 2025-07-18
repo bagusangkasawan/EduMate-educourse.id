@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaFileAlt, FaBook, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
-import AuthContext from '../components/context/AuthContext';
-import ConfirmationModal from '../components/ui/ConfirmationModal';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
+import AuthContext from '../../components/context/AuthContext.jsx';
+import ConfirmationModal from '../../components/ui/ConfirmationModal.jsx';
 
 const TopicDetailPage = () => {
   const { topicId } = useParams();

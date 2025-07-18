@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
 import * as FaIcons from 'react-icons/fa';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';

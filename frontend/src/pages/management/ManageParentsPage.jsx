@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaCheck, FaTimes, FaArrowLeft } from 'react-icons/fa';
-import AuthContext from '../components/context/AuthContext';
-import Spinner from '../components/ui/Spinner';
-import api from '../utils/api';
+import AuthContext from '../../components/context/AuthContext';
+import Spinner from '../../components/ui/Spinner';
+import api from '../../utils/api';
 
-const ApproveParentsPage = () => {
+const ManageParentsPage = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [pendingParents, setPendingParents] = useState([]);
@@ -151,4 +151,4 @@ const ApproveParentsPage = () => {
   );
 };
 
-export default ApproveParentsPage;
+export default ManageParentsPage;

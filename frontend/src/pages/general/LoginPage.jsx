@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AuthContext from '../components/context/AuthContext';
-import api from '../utils/api.js';
+import AuthContext from '../../components/context/AuthContext.jsx';
+import api from '../../utils/api.js';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {

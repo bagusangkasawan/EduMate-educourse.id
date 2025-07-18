@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../utils/api';
-import Spinner from '../components/ui/Spinner';
-import ConfirmationModal from '../components/ui/ConfirmationModal';
+import api from '../../utils/api';
+import Spinner from '../../components/ui/Spinner';
+import ConfirmationModal from '../../components/ui/ConfirmationModal';
 import { 
     FaEdit, 
     FaTrash, 

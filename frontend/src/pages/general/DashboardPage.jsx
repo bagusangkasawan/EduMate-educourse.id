@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import AuthContext from '../components/context/AuthContext';
-import StudentDashboard from '../components/dashboard/StudentDashboard';
-import ParentTeacherDashboard from '../components/dashboard/ParentTeacherDashboard';
-import AdminDashboard from '../components/dashboard/AdminDashboard';
-import Spinner from '../components/ui/Spinner';
+import AuthContext from '../../components/context/AuthContext';
+import StudentDashboard from '../../components/dashboard/StudentDashboard';
+import ParentTeacherDashboard from '../../components/dashboard/ParentTeacherDashboard';
+import AdminDashboard from '../../components/dashboard/AdminDashboard';
+import Spinner from '../../components/ui/Spinner';
 
 const DashboardPage = () => {
   const { user, loading } = useContext(AuthContext);

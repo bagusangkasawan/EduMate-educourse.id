@@ -7,30 +7,39 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import PublicRoute from './components/routing/PublicRoute';
 import Chatbot from './components/chatbot/Chatbot';
 
-// General pages
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
-import ProfilePage from './pages/ProfilePage';
-import RewardsPage from './pages/RewardsPage';
-import TopicsPage from './pages/TopicsPage';
-import TopicDetailPage from './pages/TopicDetailPage';
-import QuizPage from './pages/QuizPage';
-import QuizReviewPage from './pages/QuizReviewPage';
-import LessonPage from './pages/LessonPage';
+// General Pages
+import HomePage from './pages/general/HomePage';
+import LoginPage from './pages/general/LoginPage';
+import RegisterPage from './pages/general/RegisterPage';
+import DashboardPage from './pages/general/DashboardPage';
+import ProfilePage from './pages/general/ProfilePage';
 
-// Teacher pages
-import AddTopicPage from './pages/AddTopicPage';
-import EditTopicPage from './pages/EditTopicPage';
-import AddQuizPage from './pages/AddQuizPage';
-import EditQuizPage from './pages/EditQuizPage';
-import AddLessonPage from './pages/AddLessonPage';
-import EditLessonPage from './pages/EditLessonPage';
-import AddRewardPage from './pages/AddRewardPage';
-import ManageRewardsPage from './pages/ManageRewardsPage';
-import EditRewardPage from './pages/EditRewardPage';
-import ApproveParentsPage from './pages/ApproveParentsPage';
+// Topic Pages
+import TopicsPage from './pages/topic/TopicsPage';
+import TopicDetailPage from './pages/topic/TopicDetailPage';
+import AddTopicPage from './pages/topic/AddTopicPage';
+import EditTopicPage from './pages/topic/EditTopicPage';
+
+// Quiz Pages
+import QuizPage from './pages/quiz/QuizPage';
+import QuizReviewPage from './pages/quiz/QuizReviewPage';
+import AddQuizPage from './pages/quiz/AddQuizPage';
+import EditQuizPage from './pages/quiz/EditQuizPage';
+
+// Lesson Pages
+import LessonPage from './pages/lesson/LessonPage';
+import AddLessonPage from './pages/lesson/AddLessonPage';
+import EditLessonPage from './pages/lesson/EditLessonPage';
+
+// Reward Pages
+import RewardsPage from './pages/reward/RewardsPage';
+import AddRewardPage from './pages/reward/AddRewardPage';
+import EditRewardPage from './pages/reward/EditRewardPage';
+
+// Management Pages
+import ManageRewardsPage from './pages/management/ManageRewardsPage';
+import ManageParentsPage from './pages/management/ManageParentsPage';
+import ManageStudentsPage from './pages/management/ManageStudentsPage';
 
 function App() {
   return (
@@ -205,7 +214,15 @@ function App() {
                 path="/approve-parents"
                 element={
                   <PrivateRoute roles={['teacher']}>
-                    <ApproveParentsPage />
+                    <ManageParentsPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route 
+                path="/manage-students" 
+                element={
+                <PrivateRoute roles={['admin']}>
+                    <ManageStudentsPage />
                   </PrivateRoute>
                 }
               />

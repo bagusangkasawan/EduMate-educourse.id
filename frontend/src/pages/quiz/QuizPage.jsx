@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
-import Modal from '../components/ui/Modal';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
+import Modal from '../../components/ui/Modal.jsx';
 import * as FaIcons from 'react-icons/fa';
 
 // Utility function to shuffle an array (Fisher-Yates shuffle algorithm)

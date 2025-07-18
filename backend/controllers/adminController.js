@@ -25,6 +25,37 @@ const getAllStudents = asyncHandler(async (req, res) => {
   res.json(students);
 });
 
+// @desc    Admin menautkan siswa ke guru/ortu
+// @route   POST /api/admin/link-student
+// @access  Private/Admin
+const linkStudentAsAdmin = asyncHandler(async (req, res) => {
+  const { targetUserId, studentId } = req.body;
+
+  const user = await User.findById(targetUserId);
+  const student = await User.findById(studentId);
+
+  if (!user || !student) {
+    res.status(404);
+    throw new Error('Pengguna atau siswa tidak ditemukan.');
+  }
+
+  if (!['teacher', 'parent'].includes(user.role)) {
+    res.status(403);
+    throw new Error('Hanya guru atau orang tua yang dapat ditautkan dengan siswa.');
+  }
+
+  if (user.children.includes(student._id)) {
+    res.status(400);
+    throw new Error('Siswa sudah ditautkan.');
+  }
+
+  user.children.push(student._id);
+  await user.save();
+
+  const updatedUser = await User.findById(user._id).populate('children', '_id name email');
+  res.json(updatedUser);
+});
+
 // @desc    Approve a user account
 // @route   PUT /api/admin/approve/:id
 // @access  Private/Admin or Private/Teacher
@@ -155,5 +186,6 @@ export {
   rejectUser,
   deleteUser,
   setUserActive,
-  getAllStudents
+  getAllStudents,
+  linkStudentAsAdmin
 };

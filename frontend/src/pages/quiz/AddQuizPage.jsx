@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Spinner from '../components/ui/Spinner';
+import Spinner from '../../components/ui/Spinner';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 
 const AddQuizPage = () => {

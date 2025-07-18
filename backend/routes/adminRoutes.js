@@ -8,7 +8,8 @@ import {
     setUserActive,
     deleteUser,
     getApprovedOrRejectedParents,
-    getAllStudents
+    getAllStudents,
+    linkStudentAsAdmin
 } from '../controllers/adminController.js';
 import { protect, adminOnly, adminOrTeacher } from '../middleware/authMiddleware.js';
 
@@ -18,6 +19,7 @@ const router = express.Router();
 router.get('/pending/teachers', protect, adminOnly, getPendingTeachers);
 router.get('/history/teachers', protect, adminOnly, getApprovedOrRejectedTeachers);
 router.get('/students', protect, adminOnly, getAllStudents);
+router.post('/link-student', protect, adminOnly, linkStudentAsAdmin);
 router.put('/set-active/:id', protect, adminOnly, setUserActive);
 router.delete('/user/:id', protect, adminOnly, deleteUser);
 

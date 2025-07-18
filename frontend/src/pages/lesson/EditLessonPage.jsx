@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner';
-import Editor from '../components/ui/Editor';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
+import Editor from '../../components/ui/Editor.jsx';
 
 const EditLessonPage = () => {
   const { id } = useParams();

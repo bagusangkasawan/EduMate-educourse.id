@@ -10,14 +10,14 @@ import {
   FaTrash, 
   FaRedo, 
   FaBookReader, 
-  FaTrophy
+  FaTrophy,
+  FaUserCheck
 } from 'react-icons/fa';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
-  const [students, setStudents] = useState([]);
   const [pendingTeachers, setPendingTeachers] = useState([]);
   const [pendingParents, setPendingParents] = useState([]);
   const [historyTeachers, setHistory] = useState([]);
@@ -33,18 +33,16 @@ const AdminDashboard = () => {
   const fetchTeachersAndParents = async () => {
     try {
       setLoading(true);
-      const [pendingTeachersRes, historyTeachersRes, pendingParentsRes, historyParentsRes, studentsRes] = await Promise.all([
+      const [pendingTeachersRes, historyTeachersRes, pendingParentsRes, historyParentsRes] = await Promise.all([
         api.get('/admin/pending/teachers'),
         api.get('/admin/history/teachers'),
         api.get('/admin/pending/parents'),
-        api.get('/admin/history/parents'),
-        api.get('/admin/students')
+        api.get('/admin/history/parents')
       ]);
       setPendingTeachers(pendingTeachersRes.data);
       setHistory(historyTeachersRes.data);
       setPendingParents(pendingParentsRes.data);
       setHistoryParents(historyParentsRes.data);
-      setStudents(studentsRes.data);
     } catch (err) {
       setError('Gagal memuat data guru dan orang tua.');
     } finally {
@@ -101,14 +99,21 @@ const AdminDashboard = () => {
 
   const ContentManagement = () => (
     <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-semibold mb-4">Manajemen Konten</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
+      <h2 className="text-xl font-semibold mb-4">Manajemen Konten & Siswa</h2>
+      <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-4">
         <Link
           to="/topics"
           className="bg-indigo-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-indigo-600"
         >
           <FaBookReader />
           <span>Manajemen Topik, Materi & Kuis</span>
+        </Link>
+        <Link
+          to="/manage-students"
+          className="bg-emerald-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 hover:bg-emerald-600"
+        >
+          <FaUserCheck />
+          <span>Manajemen Akun Siswa</span>
         </Link>
         <Link
           to="/manage-rewards"
@@ -180,64 +185,6 @@ const AdminDashboard = () => {
                   <tr>
                     <td colSpan="5" className="text-center py-4">
                       Tidak ada pendaftaran guru atau orang tua yang menunggu.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-
-      {/* Daftar Siswa */}
-      <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">Data Siswa</h2>
-        {loading ? <Spinner /> : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white">
-              <thead>
-                <tr>
-                  <th className="py-2 px-4 border-b">Nama</th>
-                  <th className="py-2 px-4 border-b">Username</th>
-                  <th className="py-2 px-4 border-b">Email</th>
-                  <th className="py-2 px-4 border-b">Peran</th>
-                  <th className="py-2 px-4 border-b">Tanggal Daftar</th>
-                  <th className="py-2 px-4 border-b text-center">Kode Unik</th>
-                  <th className="py-2 px-4 border-b text-center">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.length > 0 ? (
-                  students.map((student) => (
-                    <tr key={student._id}>
-                      <td className="py-2 px-4 border-b text-center">{student.name}</td>
-                      <td className="py-2 px-4 border-b text-center">{student.username}</td>
-                      <td className="py-2 px-4 border-b text-center">{student.email}</td>
-                      <td className="py-2 px-4 border-b text-center capitalize">{student.role}</td>
-                      <td className="py-2 px-4 border-b text-center">
-                        {format(new Date(student.createdAt), 'd MMM yyyy', { locale: id })}
-                      </td>
-                      <td className="py-2 px-4 border-b text-center">
-                        {student.studentCode || '-'}
-                      </td>
-                      <td className="py-2 px-4 border-b text-center">
-                        <div className="flex justify-center text-sm">
-                          <button
-                            onClick={() => handleDelete(student._id)}
-                            className="flex items-center gap-1 bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200 transition"
-                            title="Hapus akun"
-                          >
-                            <FaTrash className="text-base" />
-                            Hapus
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="7" className="text-center py-4 text-gray-500">
-                      Tidak ada data siswa.
                     </td>
                   </tr>
                 )}

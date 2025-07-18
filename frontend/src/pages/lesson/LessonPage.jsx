@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaCheckCircle } from 'react-icons/fa';
-import api from '../utils/api.js';
-import Spinner from '../components/ui/Spinner.jsx';
-import AuthContext from '../components/context/AuthContext.jsx';
+import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
+import AuthContext from '../../components/context/AuthContext.jsx';
 
 const LessonPage = () => {
   const { lessonId } = useParams();
