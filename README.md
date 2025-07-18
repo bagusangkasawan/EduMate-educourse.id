@@ -1,6 +1,27 @@
-# 📘 EduMate (educourse.id) — Platform Edukasi Interaktif
+<p align="center">
+  <img src="https://img.shields.io/badge/License-Copyright-blue" />
+  <img src="https://img.shields.io/badge/Made%20with-React-blue?logo=react" />
+  <img src="https://img.shields.io/badge/Backend-Node.js-green?logo=node.js" />
+</p>
 
-**EduMate** adalah aplikasi berbasis web yang dirancang untuk memfasilitasi proses belajar interaktif antara siswa, guru, dan orang tua. Aplikasi ini menyediakan fitur manajemen materi, kuis, pelaporan progres, dan sistem penghargaan untuk meningkatkan motivasi belajar.
+# 🎓 EduMate by educourse.id — Belajar Interaktif, Seru, dan Terpantau
+
+**EduMate** adalah platform belajar interaktif yang membuat pendidikan lebih menyenangkan melalui **gamifikasi**, **kuis menarik**, dan **dashboard pemantauan real-time** untuk siswa, guru, dan orang tua. EduMate juga dilengkapi dengan asisten AI untuk membantu pembelajaran mandiri.
+
+> 🌟 *"Platform belajar yang menyenangkan dan mendekatkan kolaborasi antara siswa, guru, dan orang tua."*
+
+---
+
+## ✨ Fitur Unggulan
+
+* 🎯 **Pembelajaran Menarik**
+  Sistem kuis dan reward yang membuat siswa lebih termotivasi dan tidak cepat bosan.
+
+* 🧑‍🏫 **Dashboard Pemantauan Progres**
+  Orang tua dan guru dapat memantau perkembangan siswa secara transparan dan real-time.
+
+* 🤖 **Gamifikasi & Bantuan AI**
+  Siswa dapat mengumpulkan lencana, meraih skor terbaik, dan mendapat bantuan belajar dari chatbot AI.
 
 ---
 
