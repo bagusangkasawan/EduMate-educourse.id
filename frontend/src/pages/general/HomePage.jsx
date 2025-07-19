@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaChalkboardTeacher, FaChild, FaStar } from 'react-icons/fa';
-import heroBackground from '/hero.jpg';
+import heroBackground from '/hero.webp';
 
 const FeatureCard = ({ icon, title, text }) => (
   <div className="bg-white p-6 rounded-lg shadow-lg text-center">

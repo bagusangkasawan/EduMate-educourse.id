@@ -150,6 +150,8 @@ const Header = () => {
             src="https://s3.ap-southeast-1.amazonaws.com/educourse.id/educoursetraction_icon/High_Res_Trans_Logo_Educourse.id.png"
             alt="educourse.id Logo"
             className="h-8 w-auto"
+            loading="lazy"
+            decoding="async"
           />
         </Link>
 
