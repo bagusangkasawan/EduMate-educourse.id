@@ -155,7 +155,11 @@ const Header = () => {
 
         {/* Hamburger Button */}
         <div className="md:hidden">
-          <button onClick={toggleMobileMenu} className="focus:outline-none text-2xl">
+          <button
+           onClick={toggleMobileMenu} 
+           className="focus:outline-none text-2xl" 
+           aria-label="Buka menu navigasi"
+          >
             {mobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
