@@ -116,7 +116,7 @@ const RegisterPage = () => {
             </button>
           </div>
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
-            {loading ? <Spinner size="sm" /> : 'Daftar'}
+            {loading ? <Spinner size="sm" color="white" /> : 'Daftar'}
           </button>
         </form>
       )}

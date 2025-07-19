@@ -33,6 +33,7 @@ const QuizPage = () => {
   const [index, setIndex] = useState(0);
   const [startTime] = useState(Date.now());
   const [result, setResult] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [submitError, setSubmitError] = useState('');
   
@@ -65,6 +66,7 @@ const QuizPage = () => {
 
   const handleSubmit = async () => {
     try {
+      setSubmitting(true);
       setSubmitError('');
       const timeSpent = Math.max(1, Math.round((Date.now() - startTime) / 1000));
       const res = await api.post(`/quizzes/${quizId}/submit`, { answers, timeSpent });
@@ -72,6 +74,8 @@ const QuizPage = () => {
       setShowModal(true);
     } catch (error) {
       setSubmitError('Gagal mengirim jawaban. Silakan coba lagi.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -135,7 +139,7 @@ const QuizPage = () => {
                 : 'bg-green-500 text-white hover:bg-green-600'
             }`}
           >
-            Selesai
+            {submitting ? <Spinner size="sm" color="white" /> : 'Selesai'}
           </button>
         ) : (
           <button
