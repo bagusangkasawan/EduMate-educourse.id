@@ -21,7 +21,8 @@ const HomePage = () => (
       <img
         src={heroBackground}
         alt="Hero background"
-        loading="lazy"
+        fetchpriority="high"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       {/* Overlay */}
