@@ -143,7 +143,7 @@ const Header = () => {
   );
 
   return (
-    <header className="bg-white text-black shadow-md sticky top-0 z-10">
+    <header className="bg-white text-black shadow-md sticky top-0 z-20">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <img

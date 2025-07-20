@@ -4,9 +4,11 @@ import { FaChalkboardTeacher, FaChild, FaStar } from 'react-icons/fa';
 import heroBackground from '/hero.webp';
 
 const FeatureCard = ({ icon, title, text }) => (
-  <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+  <div className="group bg-white p-6 rounded-lg shadow-lg text-center transform transition duration-300 hover:shadow-2xl hover:scale-[1.03] hover:bg-blue-50">
     <div className="flex justify-center mb-4">
-      {React.cloneElement(icon, { className: "text-4xl text-blue-500" })}
+      {React.cloneElement(icon, {
+        className: "text-4xl text-blue-500 group-hover:scale-110 transition-transform duration-300",
+      })}
     </div>
     <h3 className="text-xl font-bold mb-2">{title}</h3>
     <p className="text-gray-600">{text}</p>
@@ -38,9 +40,11 @@ const HomePage = () => (
         </p>
         <Link
           to="/dashboard"
-          className="inline-block bg-white text-blue-600 font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full hover:bg-gray-200 transition text-base sm:text-lg"
+          className="inline-block bg-white text-blue-600 font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full 
+                    hover:bg-blue-600 hover:text-white hover:shadow-xl hover:scale-105 
+                    transition-all duration-300 ease-in-out text-base sm:text-lg group"
         >
-          Akses Dashboard →
+          Akses Dashboard <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
         </Link>
       </div>
     </section>

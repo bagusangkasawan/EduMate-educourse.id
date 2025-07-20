@@ -26,16 +26,24 @@ export const StatsCard = ({ icon, title, value, color }) => (
 );
 
 export const ProgressChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="100%" height={320}>
     <BarChart
       data={data}
       margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="topic" />
+      <XAxis
+        dataKey="topic"
+        angle={-15}
+        textAnchor="end"
+        interval={0}
+        tickFormatter={(value) =>
+          value.length > 10 ? `${value.slice(0, 10)}...` : value
+      }
+      />
       <YAxis unit="%" />
       <Tooltip />
-      <Legend />
+      <Legend wrapperStyle={{paddingTop: 10}} />
       <Bar
         dataKey="averageScore"
         name="Rata-rata Skor"
