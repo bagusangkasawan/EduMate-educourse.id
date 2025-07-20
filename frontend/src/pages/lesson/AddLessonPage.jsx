@@ -119,7 +119,7 @@ const AddLessonPage = () => {
             disabled={loading}
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400"
           >
-            {loading ? <Spinner size="sm" /> : 'Simpan Materi'}
+            {loading ? <Spinner size="sm" color="white" /> : 'Simpan Materi'}
           </button>
         </div>
       </form>

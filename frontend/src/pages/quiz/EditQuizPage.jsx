@@ -204,7 +204,7 @@ const EditQuizPage = () => {
             disabled={loading}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            {loading ? <Spinner size="sm" /> : 'Simpan Perubahan'}
+            {loading ? <Spinner size="sm" color="white" /> : 'Simpan Perubahan'}
           </button>
         </div>
       </form>

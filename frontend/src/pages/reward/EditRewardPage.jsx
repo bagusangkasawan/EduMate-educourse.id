@@ -12,6 +12,16 @@ import {
   FaBullseye,
 } from 'react-icons/fa';
 
+const iconOptions = [
+  { label: 'Piala', value: 'FaTrophy', icon: FaTrophy },
+  { label: 'Penghargaan', value: 'FaAward', icon: FaAward },
+  { label: 'Hadiah', value: 'FaGift', icon: FaGift },
+  { label: 'Bintang', value: 'FaStar', icon: FaStar },
+  { label: 'Kalkulator', value: 'FaCalculator', icon: FaCalculator },
+  { label: 'Ilmuwan', value: 'FaFlask', icon: FaFlask },
+  { label: 'Target', value: 'FaBullseye', icon: FaBullseye },
+];
+
 const FaIcons = {
   FaTrophy, FaAward, FaGift, FaStar, FaCalculator, FaFlask, FaBullseye,
 };
@@ -127,8 +137,17 @@ const EditRewardPage = () => {
         </div>
         <div>
           <label htmlFor="icon" className="block text-sm font-medium text-gray-700">Ikon</label>
-          <select id="icon" value={icon} onChange={(e) => setIcon(e.target.value)} className="mt-1 block w-full px-3 py-2 border rounded-md">
-            {Object.keys(FaIcons).map((iconName) => (<option key={iconName} value={iconName}>{iconName}</option>))}
+          <select
+            id="icon"
+            value={icon}
+            onChange={(e) => setIcon(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border rounded-md"
+          >
+            {iconOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
           <div className="flex items-center gap-2 mt-2">
             <span className="text-sm text-gray-500">Preview Ikon:</span>
@@ -160,7 +179,7 @@ const EditRewardPage = () => {
         <div className="flex justify-end gap-4 mt-6">
           <button type="button" onClick={() => navigate(-1)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Batal</button>
           <button type="submit" disabled={loading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {loading ? <Spinner size="sm" /> : 'Simpan Perubahan'}
+            {loading ? <Spinner size="sm" color="white" /> : 'Simpan Perubahan'}
           </button>
         </div>
       </form>
