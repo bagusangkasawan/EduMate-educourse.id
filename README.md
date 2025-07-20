@@ -15,12 +15,15 @@
 ## ✨ Fitur Unggulan
 
 * 🎯 **Pembelajaran Menarik**
+  
   Sistem kuis dan reward yang membuat siswa lebih termotivasi dan tidak cepat bosan.
 
 * 🧑‍🏫 **Dashboard Pemantauan Progres**
+  
   Orang tua dan guru dapat memantau perkembangan siswa secara transparan dan real-time.
 
 * 🤖 **Gamifikasi & Bantuan AI**
+  
   Siswa dapat mengumpulkan lencana, meraih skor terbaik, dan mendapat bantuan belajar dari chatbot AI.
 
 ---
@@ -122,7 +125,7 @@ npm install
 Buat file `.env` dan isi dengan konfigurasi:
 
 ```env
-VITE_API_URL=http://127.0.0.1:5000/api
+VITE_API_URL=http://localhost:5000/api
 VITE_TINYMCE_API_KEY=your_tinymce_api_key
 ```
 
