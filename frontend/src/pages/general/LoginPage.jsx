@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../../components/context/AuthContext.jsx';
 import api from '../../utils/api.js';
+import Spinner from '../../components/ui/Spinner.jsx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ login: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { login: authLogin } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,12 +20,15 @@ const LoginPage = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await api.post('/users/login', { login, password });
       authLogin(res.data);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Terjadi kesalahan');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,7 +70,7 @@ const LoginPage = () => {
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
         >
-          Login
+          {loading ? <Spinner size="sm" color="white" /> : 'Login'}
         </button>
       </form>
       <p className="text-center mt-4">
