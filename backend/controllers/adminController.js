@@ -17,12 +17,40 @@ const getPendingParents = asyncHandler(async (req, res) => {
     res.json(users);
 });
 
-// @desc    Get all students with their unique code
+// @desc    Get all students with their linked parent/teacher (if any)
 // @route   GET /api/admin/students
 // @access  Private/Admin
 const getAllStudents = asyncHandler(async (req, res) => {
   const students = await User.find({ role: 'student' }).select('name username email createdAt role studentCode');
-  res.json(students);
+
+  const linkers = await User.find({ role: { $in: ['teacher', 'parent'] } })
+    .select('name role children')
+    .populate('children', '_id');
+
+  const studentLinkMap = {};
+  
+  // Buat mapping siswa ke array of linked users (guru/ortu)
+  linkers.forEach((linker) => {
+    linker.children.forEach((child) => {
+      const key = child._id.toString();
+      if (!studentLinkMap[key]) {
+        studentLinkMap[key] = [];
+      }
+      studentLinkMap[key].push({
+        _id: linker._id,
+        name: linker.name,
+        role: linker.role,
+      });
+    });
+  });
+
+  // Gabungkan data siswa dengan linkedUsers
+  const studentsWithLink = students.map((student) => ({
+    ...student.toObject(),
+    linkedUsers: studentLinkMap[student._id.toString()] || [],
+  }));
+
+  res.json(studentsWithLink);
 });
 
 // @desc    Admin menautkan siswa ke guru/ortu

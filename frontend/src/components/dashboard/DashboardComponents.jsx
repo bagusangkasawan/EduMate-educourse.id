@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -25,33 +25,49 @@ export const StatsCard = ({ icon, title, value, color }) => (
   </div>
 );
 
-export const ProgressChart = ({ data }) => (
-  <ResponsiveContainer width="100%" height={320}>
-    <BarChart
-      data={data}
-      margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="topic"
-        angle={-15}
-        textAnchor="end"
-        interval={0}
-        tickFormatter={(value) =>
-          value.length > 10 ? `${value.slice(0, 10)}...` : value
-      }
-      />
-      <YAxis unit="%" />
-      <Tooltip />
-      <Legend wrapperStyle={{paddingTop: 10}} />
-      <Bar
-        dataKey="averageScore"
-        name="Rata-rata Skor"
-        fill="#4f46e5"
-      />
-    </BarChart>
-  </ResponsiveContainer>
-);
+export const ProgressChart = ({ data }) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 720);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  return (
+    <ResponsiveContainer width="100%" height={320}>
+      <BarChart
+        data={data}
+        margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="topic"
+          angle={isSmallScreen ? -15 : 0}
+          textAnchor={isSmallScreen ? "end" : "middle"}
+          interval={0}
+          tickFormatter={(value) =>
+            isSmallScreen && value.length > 10
+              ? `${value.slice(0, 10)}...`
+              : value
+          }
+        />
+        <YAxis unit="%" />
+        <Tooltip />
+        <Legend wrapperStyle={{ paddingTop: 10 }} />
+        <Bar
+          dataKey="averageScore"
+          name="Rata-rata Skor"
+          fill="#4f46e5"
+        />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
 
 export const RecentActivity = ({ activities }) => (
   <div className="space-y-4">

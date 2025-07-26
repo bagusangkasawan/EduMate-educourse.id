@@ -100,62 +100,90 @@ const ManageStudentsPage = () => {
                 <th className="py-2 px-4 border">Email</th>
                 <th className="py-2 px-4 border">Kode Siswa</th>
                 <th className="py-2 px-4 border">Tanggal Daftar</th>
+                <th className="py-2 px-4 border">Sudah Tertaut</th>
                 <th className="py-2 px-4 border">Tautkan ke</th>
                 <th className="py-2 px-4 border text-center">Aksi</th>
               </tr>
             </thead>
             <tbody>
-              {students.map((student) => (
-                <tr key={student._id}>
-                  <td className="py-2 px-4 border text-center">{student.name}</td>
-                  <td className="py-2 px-4 border text-center">{student.username}</td>
-                  <td className="py-2 px-4 border text-center">{student.email}</td>
-                  <td className="py-2 px-4 border text-center">{student.studentCode}</td>
-                  <td className="py-2 px-4 border text-center">
-                    {format(new Date(student.createdAt), 'd MMM yyyy', { locale: id })}
-                  </td>
-                  <td className="py-2 px-4 border text-center">
-                    <select
-                      value={linkMap[student._id] || ''}
-                      onChange={(e) =>
-                        setLinkMap((prev) => ({
-                          ...prev,
-                          [student._id]: e.target.value,
-                        }))
-                      }
-                      className="border rounded px-2 py-1 text-sm"
-                    >
-                      <option value="">Pilih Guru/Orang Tua</option>
-                      {teachersAndParents.map((user) => (
-                        <option key={user._id} value={user._id}>
-                          {user.name} ({user.role})
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td className="py-2 px-4 border text-center">
-                    <div className="flex gap-2 justify-center">
-                      <button
-                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 flex items-center gap-1 text-sm"
-                        onClick={() => handleLink(student._id)}
-                        disabled={!linkMap[student._id]}
-                        title="Tautkan ke guru/ortu"
+              {students.map((student) => {
+                const linkedIds = student.linkedUsers?.map((u) => u._id) || [];
+                const availableToLink = teachersAndParents.filter((u) => !linkedIds.includes(u._id));
+
+                return (
+                  <tr key={student._id}>
+                    <td className="py-2 px-4 border text-center">{student.name}</td>
+                    <td className="py-2 px-4 border text-center">{student.username}</td>
+                    <td className="py-2 px-4 border text-center">{student.email}</td>
+                    <td className="py-2 px-4 border text-center">{student.studentCode}</td>
+                    <td className="py-2 px-4 border text-center">
+                      {format(new Date(student.createdAt), 'd-MM-yy')}
+                    </td>
+
+                    {/* Kolom "Sudah Tertaut" */}
+                    <td className="py-2 px-4 border text-center align-top">
+                      {student.linkedUsers && student.linkedUsers.length > 0 ? (
+                        <ul className="text-sm text-gray-700 space-y-1 text-left">
+                          {student.linkedUsers.map((user) => (
+                            <li key={user._id}>
+                              {user.name} ({user.role === 'parent' ? 'Orang Tua' : 'Guru'})
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <span className="text-gray-400 text-sm italic">Belum ada</span>
+                      )}
+                    </td>
+
+                    {/* Kolom "Tautkan ke" */}
+                    <td className="py-2 px-4 border text-center">
+                      <select
+                        value={linkMap[student._id] || ''}
+                        onChange={(e) =>
+                          setLinkMap((prev) => ({
+                            ...prev,
+                            [student._id]: e.target.value,
+                          }))
+                        }
+                        className="border rounded px-2 py-1 text-sm"
                       >
-                        <FaLink />
-                        Tautkan
-                      </button>
-                      <button
-                        className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200 flex items-center gap-1 text-sm"
-                        onClick={() => openDeleteModal(student._id)}
-                        title="Hapus akun siswa"
-                      >
-                        <FaTrash />
-                        Hapus
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        <option value="">Pilih Guru/Orang Tua</option>
+                        {availableToLink.map((user) => (
+                          <option key={user._id} value={user._id}>
+                            {user.name} ({user.role})
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+
+                    <td className="py-2 px-4 border text-center">
+                      <div className="flex gap-2 justify-center">
+                        <button
+                          className={`px-3 py-1 rounded flex items-center gap-1 text-sm ${
+                            !linkMap[student._id]
+                              ? 'bg-gray-300 text-white cursor-not-allowed'
+                              : 'bg-blue-500 text-white hover:bg-blue-600'
+                          }`}
+                          onClick={() => handleLink(student._id)}
+                          disabled={!linkMap[student._id]}
+                          title="Tautkan ke guru/ortu"
+                        >
+                          <FaLink />
+                          Tautkan
+                        </button>
+                        <button
+                          className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200 flex items-center gap-1 text-sm"
+                          onClick={() => openDeleteModal(student._id)}
+                          title="Hapus akun siswa"
+                        >
+                          <FaTrash />
+                          Hapus
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
               {students.length === 0 && (
                 <tr>
                   <td colSpan="7" className="py-4 text-center text-gray-500">
