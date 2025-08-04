@@ -70,14 +70,12 @@ const LessonPage = () => {
         <span>Kembali ke Topik</span>
       </button>
 
-      <div className="bg-white p-8 md:p-12 rounded-lg shadow-lg prose max-w-none">
+      <div className="bg-white p-8 md:p-12 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold mb-4">{lesson.title}</h1>
         <hr className="mb-8" />
-
-        <div
-          className="prose-lg"
-          dangerouslySetInnerHTML={{ __html: lesson.content }}
-        />
+        <div className="prose lg:prose-lg max-w-none">
+          <div dangerouslySetInnerHTML={{ __html: lesson.content }} />
+        </div>
 
         {user.role === 'student' && checkedCompletion && (
           <div className="mt-12 text-center">
