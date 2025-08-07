@@ -8,7 +8,20 @@
     <title>EduMate by educourse.id</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
+    <div id="preloader" style="
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    ">
+      <img
+        src="https://educourse.id/static/frontend-full-learnup/assets/img/preloader.gif"
+        alt="Loading..."
+      />
+    </div>
+    <div id="root" style="display: none;"></div>
+    <script type="module" src="src/index.jsx"></script>
   </body>
 </html>

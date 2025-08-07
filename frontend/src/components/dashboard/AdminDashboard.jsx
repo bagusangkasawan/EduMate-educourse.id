@@ -157,7 +157,7 @@ const AdminDashboard = () => {
                         <td className="py-2 px-4 border-b text-center">{user.email}</td>
                         <td className="py-2 px-4 border-b text-center capitalize">{user.role}</td>
                         <td className="py-2 px-4 border-b text-center">
-                        {format(new Date(user.createdAt), 'd MMM yyyy', { locale: id })}
+                        {format(new Date(user.createdAt), 'dd MMM yyyy', { locale: id })}
                         </td>
                         <td className="py-2 px-4 border-b">
                         <div className="flex gap-2 justify-center text-sm">
@@ -220,7 +220,7 @@ const AdminDashboard = () => {
                     <td className="py-2 px-4 border-b text-center">{user.email}</td>
                     <td className="py-2 px-4 border-b text-center capitalize">{user.role}</td>
                     <td className="py-2 px-4 border-b text-center">
-                        {format(new Date(user.createdAt), 'd MMM yyyy', { locale: id })}
+                        {format(new Date(user.createdAt), 'dd MMM yyyy', { locale: id })}
                     </td>
                     <td className="py-2 px-4 border-b text-center capitalize">{user.status}</td>
                     <td className="py-2 px-4 border-b text-center">
