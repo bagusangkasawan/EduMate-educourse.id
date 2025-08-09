@@ -100,7 +100,7 @@ export const RecentActivity = ({ activities }) => (
                 {isQuiz && ` | Skor: ${act.score?.toFixed(0) ?? 0}%`}
               </p>
               <p className="text-xs text-gray-400">
-                {format(new Date(act.createdAt), 'd MMMM yyyy, HH:mm', {
+                {format(new Date(act.createdAt), 'dd MMMM yyyy, HH:mm', {
                   locale: id
                 })}
               </p>

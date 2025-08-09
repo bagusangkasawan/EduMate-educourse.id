@@ -117,7 +117,7 @@ const ManageStudentsPage = () => {
                     <td className="py-2 px-4 border text-center">{student.email}</td>
                     <td className="py-2 px-4 border text-center">{student.studentCode}</td>
                     <td className="py-2 px-4 border text-center">
-                      {format(new Date(student.createdAt), 'd-MM-yy')}
+                      {format(new Date(student.createdAt), 'dd-MM-yy')}
                     </td>
 
                     {/* Kolom "Sudah Tertaut" */}

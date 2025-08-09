@@ -7,7 +7,7 @@ import { id } from 'date-fns/locale';
 
 const RewardCard = ({ reward: { reward, dateEarned } }) => {
     const Icon = FaIcons[reward?.icon] || FaIcons.FaTrophy;
-    const formattedDate = dateEarned ? format(new Date(dateEarned), "d MMMM yyyy", { locale: id }) : '-';
+    const formattedDate = dateEarned ? format(new Date(dateEarned), "dd MMMM yyyy", { locale: id }) : '-';
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4 transform hover:scale-105 transition-transform">
